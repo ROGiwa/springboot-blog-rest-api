@@ -7,7 +7,7 @@ A simple blog rest api.
 This project is a blog rest api built with spring boot and java. It includes features like posts and comments.
 
 ## Pre-configuration
-- Install Java 21, 20 or 17
+- Install Java 21 or 20
 - Install maven
 
 ## Configuration
