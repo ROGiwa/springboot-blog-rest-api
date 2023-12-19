@@ -10,5 +10,5 @@ Install maven
 Configuration
 Clone the repository
 
-git clone https://github.com/monsur4/video-service.git
+git clone https://github.com/ROGiwa/springboot-blog-rest-api.git
 Open your terminal and run ./mvnw clean install in the root directory of the project
