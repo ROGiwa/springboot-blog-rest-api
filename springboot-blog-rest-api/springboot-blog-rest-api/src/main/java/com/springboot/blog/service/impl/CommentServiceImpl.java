@@ -10,6 +10,9 @@ import com.springboot.blog.repository.PostRepository;
 import com.springboot.blog.service.CommentService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class CommentServiceImpl implements CommentService {
 
@@ -36,11 +39,20 @@ public class CommentServiceImpl implements CommentService {
         return mapToDto(newComment);
     }
 
+    @Override
+    public List<CommentDto> getCommentByPostId(long postId) {
+        //retrieve comments by postId
+        List<Comment> comments = commentRepository.findByPostId(postId);
+
+        //convert list of comment entities to list of comment Dtos
+        return comments.stream().map(comment -> mapToDto(comment)).collect(Collectors.toList());
+    }
+
     private CommentDto mapToDto(Comment comment){
         CommentDto commentDto = new CommentDto();
         commentDto.setId(comment.getId());
         commentDto.setName(comment.getName());
-        commentDto.setEmail(commentDto.getEmail());
+        commentDto.setEmail(comment.getEmail());
         commentDto.setBody(comment.getBody());
         return commentDto;
     }
@@ -50,7 +62,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setId(commentDto.getId());
         comment.setName(commentDto.getName());
         comment.setEmail(commentDto.getEmail());
-        comment.setBody(comment.getBody());
+        comment.setBody(commentDto.getBody());
         return comment;
 
     }
